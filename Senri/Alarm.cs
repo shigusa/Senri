@@ -7,13 +7,9 @@ using System.ComponentModel;
 
 namespace Senri
 {
-
-    public enum config
-    {
-        Behavior,
-        Time,
-        Week,
-    }
+    /// <summary>
+    /// 実行時間のタイマー
+    /// </summary>
     public class Alarm
     {
         public string Behavior { get; set; }

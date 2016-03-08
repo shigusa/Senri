@@ -13,8 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Collections;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
 
-using System.Data.SQLite;
 namespace Senri
 {
     /// <summary>
@@ -29,7 +31,6 @@ namespace Senri
         TimeSpan oldtimespan;
 
         Senri.Alarm alarm;
-        Senri.AutoCode.info_drink auto;
 
         public MainWindow()
         {
@@ -47,6 +48,7 @@ namespace Senri
             //// DataGridに設定する
             //DataGrid dataSource;
             //dataSource.ItemsSource = data;
+
             //タイマーのインスタンス生成
             dispatcherTimer = new DispatcherTimer(DispatcherPriority.Normal);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
@@ -76,10 +78,23 @@ namespace Senri
                     break;
             }
         }
+        /// <summary>
+        /// スタートボタン
+        /// </summary>
         private void TimeStart()
         {
-            auto = new AutoCode.info_drink();
-            auto.if_drink();
+            Senri.AutoCode.aspit_joune_sumi auto;
+            auto = new AutoCode.aspit_joune_sumi();
+            auto.sumi();
+            //auto.SeveFileDialog();
+            var script = CSharpScript.Create("Console.WriteLune");
+            //Senri.AutoCode.info_drink auto;
+            //auto = new AutoCode.info_drink();
+            //auto.if_drink();
+        }
+        private void NOUDStart()
+        {
+            DataGrid.SelectedEvent.GetType();
         }
         private void TimeStop()
         {

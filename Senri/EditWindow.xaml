@@ -18,7 +18,7 @@
         <CheckBox x:Name="Friday" Content="金" HorizontalAlignment="Left" Margin="160,120,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="Saturday" Content="土" HorizontalAlignment="Left" Margin="190,120,0,0" VerticalAlignment="Top"/>
         <CheckBox x:Name="Sunday" Content="日" HorizontalAlignment="Left" Margin="220,120,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="button" Content="OK" HorizontalAlignment="Left" Margin="174,163,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="button" Content="OK" HorizontalAlignment="Left" Margin="174,163,0,0" VerticalAlignment="Top" Width="75" Click="savebutton"/>
 
     </Grid>
 </Window>

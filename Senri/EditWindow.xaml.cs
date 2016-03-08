@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using System.Xml.Serialization;
+using System.IO;
+
 namespace Senri
 {
     /// <summary>
@@ -22,6 +25,11 @@ namespace Senri
         public EditWindow()
         {
             InitializeComponent();
+        }
+
+        private void savebutton(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

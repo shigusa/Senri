@@ -187,13 +187,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Alarm.cs" />
+    <Compile Include="Models\Alarm.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AutoCode\aspit_joune_sumi.cs" />
+    <Compile Include="AutoCode\Command.cs" />
+    <Compile Include="AutoCode\Commander.cs" />
     <Compile Include="AutoCode\info_drink.cs" />
+    <Compile Include="AutoCode\SeleniumCommand.cs" />
+    <Compile Include="AutoCode\WindowsUIAutomationCommand.cs" />
     <Compile Include="EditWindow.xaml.cs">
       <DependentUpon>EditWindow.xaml</DependentUpon>
     </Compile>
@@ -203,6 +207,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Timer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -220,7 +225,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="AutoCode\info_gachadama.csx" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

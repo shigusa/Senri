@@ -7,15 +7,19 @@
         mc:Ignorable="d"
         Title="SJCWatch" Height="350" Width="525">
     <Grid>
-        <TextBlock Name="text1" FontSize="32" Text="00:00:00" HorizontalAlignment="Center" VerticalAlignment="Top"></TextBlock>
-        <DataGrid ItemsSource="{Binding dataSource}" MouseDoubleClick="DataGrid_MouseDoubleClick" Margin="0,48,0,0">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="テスト名" Binding="{Binding Behavior}"></DataGridTextColumn>
-                <DataGridTextColumn Header="実行時間" Binding="{Binding Time}"></DataGridTextColumn>
-                <DataGridTextColumn Header="曜日" Binding="{Binding Week}"></DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-        <Button x:Name="btnStart" Content="Start" HorizontalAlignment="Left" Margin="30, 10 0, 0" VerticalAlignment="Top" Click="Button_Click"></Button>
-        <Button x:Name="btnStop" Content="Stop" HorizontalAlignment="Left" Margin="90, 10 0, 0" VerticalAlignment="Top" Click="Button_Click"></Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Menu Background="{x:Null}">
+            <MenuItem x:Name="btnStart" Header="Start" Click="Button_Click"></MenuItem>
+            <MenuItem x:Name="btnStop" Header="Stop" Click="Button_Click"></MenuItem>
+            <MenuItem x:Name="AddItem" Header="Add" Click="Button_Click"></MenuItem>
+            <MenuItem x:Name="LoadItem" Header="Load" Click="Button_Click"></MenuItem>
+            <MenuItem x:Name="SeveItem" Header="Seve" Click="Button_Click"></MenuItem>
+        </Menu>
+        <TextBlock Name="text1" FontSize="32" Text="00:00:00" HorizontalAlignment="Center" Grid.Row="1"></TextBlock>
+        <DataGrid x:Name="dataGrid" ItemsSource="{Binding}" MouseDoubleClick="DataGrid_MouseDoubleClick" Grid.Row="2"></DataGrid>
     </Grid>
 </Window>

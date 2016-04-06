@@ -1,21 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Collections;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Scripting;
+using System.Data.SQLite;
+using System.Data;
+using System.Data.Common;
 
 namespace Senri
 {
@@ -29,25 +24,14 @@ namespace Senri
         DateTime StartTime;
         TimeSpan nowtimespan;
         TimeSpan oldtimespan;
+        static DataSet dataset = new DataSet(); // DaaSetのインスタンスを作成する。
+        DataTable table = dataset.Tables.Add(); // DAtaSetにテーブルを追加する。
 
         Senri.Alarm alarm;
 
         public MainWindow()
         {
             InitializeComponent();
-
-            ////データの作成
-            //alarm = new Alarm();
-            //var data = new ObservableCollection<Alarm>(
-            //    Enumerable.Range(1, 100).Select(i => new Alarm
-            //    {
-            //        Behavior = "site" + i,
-            //        Time = "00:00:00",
-            //        Week = "火"
-            //    }));
-            //// DataGridに設定する
-            //DataGrid dataSource;
-            //dataSource.ItemsSource = data;
 
             //タイマーのインスタンス生成
             dispatcherTimer = new DispatcherTimer(DispatcherPriority.Normal);
@@ -74,6 +58,18 @@ namespace Senri
                     TimeStop();
                     break;
 
+                case "AddItem":
+                    Add();
+                    break;
+
+                case "LoadItem":
+                    DbLoad();
+                    break;
+
+                case "SeveItem":
+                    DbSeve();
+                    break;
+
                 default:
                     break;
             }
@@ -98,8 +94,40 @@ namespace Senri
         }
         private void TimeStop()
         {
-            var Editwnd = new EditWindow();
-            Editwnd.Show();
+            //var Editwnd = new EditWindow();
+            //Editwnd.Show();
+        }
+        private void Add()
+        {
+            DataRow row = table.NewRow();
+            row[1] = "addtest";
+            table.Rows.Add(row);
+        }
+
+        private void DbLoad()
+        {
+            Database.SQLite SQDb;
+            SQDb = new Database.SQLite();
+            string exePath = Environment.GetCommandLineArgs()[0];
+            string exeFullPath = System.IO.Path.GetFullPath(exePath);
+            string startupPath = System.IO.Path.GetDirectoryName(exeFullPath);
+            string DbPath = startupPath + "\\Alarm.db";
+            if (System.IO.File.Exists(DbPath))
+            {
+                dataGrid.DataContext = SQDb.loadDb(table);
+            }
+            else
+            {
+                SQDb.createDb();
+                dataGrid.DataContext = SQDb.loadDb(table);
+            }
+        }
+
+        private void DbSeve()
+        {
+            Database.SQLite SQDb;
+            SQDb = new Database.SQLite();
+            SQDb.seveDb(table);
         }
 
         private void DataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
